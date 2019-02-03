@@ -5,16 +5,22 @@ import (
 	"testing"
 )
 
+var array = []int{1, 23, 44, 3, 442, 32, 44}
+
 //【冒泡排序】测试
 func TestBubbleSort(t *testing.T) {
-	array := []int{1,23,44,3,442,32,44}
 	BubbleSort(array)
 	fmt.Println(array)
 }
 
 //【选择排序】测试
 func TestSelectSort(t *testing.T) {
-	array := []int{1,23,44,3,442,32,44}
 	SelectSort(array)
+	fmt.Println(array)
+}
+
+//【快速排序】测试
+func TestQuickSort(t *testing.T) {
+	QuickSort(array, 0, len(array)-1)
 	fmt.Println(array)
 }
