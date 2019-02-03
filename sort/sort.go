@@ -21,6 +21,7 @@ func SelectSort(array []int) {
 		}
 	}
 }
+
 //快速排序
 //TODO 1.快速排序的思想还未完全理解
 //     		1.1递归终止条件
