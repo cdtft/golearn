@@ -43,3 +43,50 @@ func QuickSort(array []int, left int, right int) {
 	QuickSort(array, left, index-1)
 	QuickSort(array, index+1, right)
 }
+
+//并归排序
+func MergeSort(array []int) {
+	mergeSort(array, 0, len(array)-1)
+}
+
+func mergeSort(array []int, start int, end int) {
+	if start >= end {
+		return
+	}
+	mid := (start + end) / 2
+	mergeSort(array, start, mid)
+	mergeSort(array, mid+1, end)
+	merge(array, start, mid, end)
+}
+
+func merge(array []int, start int, mid int, end int) {
+	//临时数组
+	tempArray := make([]int, end-start+1)
+
+	i := start
+	j := mid + 1
+	index := 0
+
+	//复制排序数组到临时数组
+	for ; i <= mid && j <= end; index++ {
+		if array[i] < array[j] {
+			tempArray[index] = array[i]
+			i++
+		} else {
+			tempArray[index] = array[j]
+			j++
+		}
+	}
+
+	for ; i <= mid; i++ {
+		tempArray[index] = array[i]
+		index++
+	}
+
+	for ; j <= end; j++ {
+		tempArray[index] = array[j]
+		index++
+	}
+	//将临时的数组元素拷贝到原数组
+	copy(array[start:end+1], tempArray)
+}

@@ -24,3 +24,8 @@ func TestQuickSort(t *testing.T) {
 	QuickSort(array, 0, len(array)-1)
 	fmt.Println(array)
 }
+
+func TestMergeSort(t *testing.T) {
+	MergeSort(array)
+	fmt.Println(array)
+}
