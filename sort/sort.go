@@ -90,3 +90,5 @@ func merge(array []int, start int, mid int, end int) {
 	//将临时的数组元素拷贝到原数组
 	copy(array[start:end+1], tempArray)
 }
+
+
