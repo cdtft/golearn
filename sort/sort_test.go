@@ -30,6 +30,7 @@ func TestMergeSort(t *testing.T) {
 	fmt.Println(array)
 }
 
+//【计数排序】测试
 func TestCountingSort(t *testing.T) {
 	CountingSort(array, len(array))
 	fmt.Println(array)
