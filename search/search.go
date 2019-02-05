@@ -19,3 +19,18 @@ func BinarySearch(array []int, length int, value int) (index int, count int) {
 	}
 	return -1, _count
 }
+
+func BinarySearchRecursion(array []int, low int, high int, value int) int {
+	if low >= high {
+		return -1
+	}
+	mid := (high - low) / 2
+	if array[mid] == value {
+		return mid
+	}
+	if array[mid] < value {
+		return BinarySearchRecursion(array, low, mid-1, value)
+	} else {
+		return BinarySearchRecursion(array, mid+1, high, value)
+	}
+}
