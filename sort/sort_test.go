@@ -29,3 +29,8 @@ func TestMergeSort(t *testing.T) {
 	MergeSort(array)
 	fmt.Println(array)
 }
+
+func TestCountingSort(t *testing.T) {
+	CountingSort(array, len(array))
+	fmt.Println(array)
+}

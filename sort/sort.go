@@ -91,4 +91,33 @@ func merge(array []int, start int, mid int, end int) {
 	copy(array[start:end+1], tempArray)
 }
 
+//计数排序
+func CountingSort(array []int, length int) {
+	if length <= 1 {
+		return
+	}
+	var max int = 0
+	for _, n := range array {
+		if n > max {
+			max = n
+		}
+	}
 
+	countArray := make([]int, max+1)
+	for _, i := range array {
+		countArray[i]++
+	}
+
+	for j := 1; j < max+1; j++ {
+		countArray[j] += countArray[j-1]
+	}
+
+	tempArray := make([]int, length)
+
+	for _, x := range array {
+		index := countArray[x] - 1
+		countArray[x]--
+		tempArray[index] = x
+	}
+	copy(array, tempArray)
+}
