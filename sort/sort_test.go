@@ -25,6 +25,7 @@ func TestQuickSort(t *testing.T) {
 	fmt.Println(array)
 }
 
+//【并归排序】测试
 func TestMergeSort(t *testing.T) {
 	MergeSort(array)
 	fmt.Println(array)
