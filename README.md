@@ -42,3 +42,85 @@ func main() {
 *无缓冲的通道*：是指在接受前没有能力保存任何值的通道
 
 *有缓冲的通道*：不会要求goroutine之间必须同时完成发送和接受。只有在通道在没有可用缓冲区容纳被发送的值时，发送动作才会阻塞。
+
+#### golang中os/signal包的使用
+
+golang中对信号的处理主要使用os/signal包中的两个方法：一个是notify方法用来监听收到的信号；一个是 stop方法用来取消监听。
+
+监听全部信号：
+```go
+package main
+
+import (
+    "fmt"
+    "os"
+    "os/signal"
+)
+
+// 监听全部信号
+func main()  {
+    //合建chan
+    c := make(chan os.Signal)
+    //监听所有信号
+    signal.Notify(c)
+    //阻塞直到有信号传入
+    fmt.Println("启动")
+    s := <-c
+    fmt.Println("退出信号", s)
+}
+```
+```text
+启动
+go run example-1.go
+启动
+
+ctrl+c退出,输出
+退出信号 interrupt
+
+kill pid 输出
+退出信号 terminated
+```
+
+监听指定信号
+```go
+package main
+
+import (
+    "fmt"
+    "os"
+    "os/signal"
+    "syscall"
+)
+
+// 监听指定信号
+func main()  {
+    //合建chan
+    c := make(chan os.Signal)
+    //监听指定信号 ctrl+c kill
+    signal.Notify(c, os.Interrupt, os.Kill, syscall.SIGUSR1, syscall.SIGUSR2)
+    //阻塞直到有信号传入
+    fmt.Println("启动")
+    //阻塞直至有信号传入
+    s := <-c
+    fmt.Println("退出信号", s)
+}
+```
+
+```text
+
+启动
+go run example-2.go
+启动
+
+ctrl+c退出,输出
+退出信号 interrupt
+
+kill pid 输出
+退出信号 terminated
+
+kill -USR1 pid 输出
+退出信号 user defined signal 1
+
+kill -USR2 pid 输出
+退出信号 user defined signal 2
+```
