@@ -31,3 +31,8 @@ func NewWorkPool(maxGoroutines int) *WorkPool {
 func (p *WorkPool) WorkPoolRun(w Worker) {
 	p.work <-w
 }
+
+func (p *WorkPool) ShotDown() {
+	close(p.work)
+	p.wg.Wait()
+}
