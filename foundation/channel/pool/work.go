@@ -32,7 +32,7 @@ func (p *WorkPool) WorkPoolRun(w Worker) {
 	p.work <-w
 }
 
-func (p *WorkPool) ShotDown() {
+func (p *WorkPool) ShutDown() {
 	close(p.work)
 	p.wg.Wait()
 }
