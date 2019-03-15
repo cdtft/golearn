@@ -1,6 +1,7 @@
 package main
 
 import (
+	"demo/myfalg/internal"
 	"flag"
 	"fmt"
 )
@@ -13,5 +14,6 @@ var name string
 
 func main() {
 	flag.Parse()
-	fmt.Printf("hello %s", name)
+	fmt.Printf("hello %s /n", name)
+	internal.Hello()
 }
