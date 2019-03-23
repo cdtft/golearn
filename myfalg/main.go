@@ -13,7 +13,13 @@ func init() {
 var name string
 
 func main() {
+	//map的空指针测试
+	var myMap map[string]int
+
+	delete(myMap, "1")
+	myMap["s"] = 1
+
 	flag.Parse()
-	fmt.Printf("hello %s /n", name)
+	fmt.Printf("hello %s \n", name)
 	internal.Hello()
 }
