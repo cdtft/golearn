@@ -41,3 +41,11 @@ func cancel(cancelChan chan struct{}) {
 func closeChannel(cancelChan chan struct{}) {
 	close(cancelChan)
 }
+
+func TestGoroutine(t *testing.T) {
+	for i := 0; i < 10; i++ {
+		go func(i int) {
+			fmt.Println(i)
+		}(i)
+	}
+}
